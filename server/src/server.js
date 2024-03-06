@@ -6,6 +6,7 @@ import cors from 'cors'
 import connectToDB from './config/dbConnection.js'
 import errorMiddleware from "./middleware/error.middleware.js"
 import cloudinary from 'cloudinary'
+import morgan from 'morgan'
 const app = express()
 
 // mongodb connection
@@ -28,10 +29,12 @@ app.use(morgan("dev"))
 
 // Routes Import
 import authRouter from './routes/user.routes.js'
-import morgan from 'morgan'
+import courseRouter from './routes/course.routes.js'
+
 
 // Routes Decleration
 app.use('/api/v1/user', authRouter);
+app.use('/api/v1/course', courseRouter);
 
 
 app.use(errorMiddleware);
