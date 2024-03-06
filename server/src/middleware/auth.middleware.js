@@ -2,9 +2,9 @@ import ApiError from "../utils/apiError.js";
 import JWT from 'jsonwebtoken';
 
 const isLoggedIn = (req, res, next) => {
-    const {token} = req.cookies;
+    const { token } = req.cookies;
 
-    if(!token) {
+    if (!token) {
         return next(new ApiError(401, "Unauthenticated!! Please Login"))
     }
 
