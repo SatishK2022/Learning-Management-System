@@ -45,7 +45,7 @@ async function register(req, res, next) {
         if (req.file) {
             try {
                 const result = await cloudinary.v2.uploader.upload(req.file.path, {
-                    folder: "lms",
+                    folder: "lms/user",
                     width: 250,
                     height: 250,
                     crop: "fill",

@@ -34,7 +34,7 @@ import courseRouter from './routes/course.routes.js'
 
 // Routes Decleration
 app.use('/api/v1/user', authRouter);
-app.use('/api/v1/course', courseRouter);
+app.use('/api/v1/courses', courseRouter);
 
 
 app.use(errorMiddleware);

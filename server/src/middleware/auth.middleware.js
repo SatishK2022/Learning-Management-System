@@ -18,6 +18,17 @@ const isLoggedIn = (req, res, next) => {
     next();
 }
 
+const authorizedRoles = (...roles) => (req, res, next) => {
+    const currentRole = req.user.role;
+
+    if (!roles.includes(currentRole)) {
+        return next(new ApiError(403, "Unauthorized!! You do not have permission to access this route"))
+    }
+
+    next();
+}
+
 export {
-    isLoggedIn
+    isLoggedIn,
+    authorizedRoles
 };
