@@ -28,7 +28,19 @@ const authorizedRoles = (...roles) => (req, res, next) => {
     next();
 }
 
+const authorizedSubscribers = (req, res, next) => {
+    const subscriptionStatus = req.user.subscription.status;
+    const currentRole = req.user.role;
+
+    if (currentRole !== "ADMIN" && subscriptionStatus !== "active") {
+        return next(new ApiError(403, "Unauthorized!! You do not have permission to access this route"))
+    }
+
+    next();
+}
+
 export {
     isLoggedIn,
-    authorizedRoles
+    authorizedRoles,
+    authorizedSubscribers
 };
