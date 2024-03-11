@@ -1,10 +1,21 @@
+import { useEffect } from "react";
+import toast from "react-hot-toast";
+import { Footer, Header } from "./components";
+import { Outlet } from "react-router-dom";
+
 function App() {
+  useEffect(() => {
+    toast.success("Hello");
+    toast.error("Error");
+  });
 
   return (
     <>
-      <h1>Hello World</h1>
+      <Header />
+      <Outlet />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
