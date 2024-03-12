@@ -60,7 +60,7 @@ const CourseInitation = () => {
               <Link
                 to={card.path}
                 key={card.title}
-                className="bg-slate-200/10 rounded-md px-5 py-5 flex flex-col hover:ring-2 ring-orange-500 items-center gap-2 justify-center"
+                className="bg-slate-200/10 rounded-md px-5 py-5 flex flex-col text-orange-500 hover:ring-2 ring-orange-500 items-center gap-2 justify-center"
               >
                 {card.icon}
                 <h3 className="text-lg font-semibol text-white">

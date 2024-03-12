@@ -40,7 +40,7 @@ const Faq = () => {
   return (
     <Container>
       <section>
-        <h1 className="text-3xl lg:text-4xl font-semibold py-5 mb-5">
+        <h1 className="text-3xl text-white lg:text-4xl font-semibold py-5 mb-5">
           Frequently Asked{" "}
           <span className="font-bold text-orange-500">Questions</span>
         </h1>
