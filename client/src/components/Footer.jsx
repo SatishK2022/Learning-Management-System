@@ -79,7 +79,7 @@ function Footer() {
                   socialIcons.map((icon) => (
                     <div className="w-auto p-1.5">
                       <Link to={icon.link}>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 hover:border-gray-400">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-full hover:text-orange-500 border border-gray-300 hover:border-orange-500 transition-all duration-300 ease-in-out">
                           {icon.icon}
                         </div>
                       </Link>

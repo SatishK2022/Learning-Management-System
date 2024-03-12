@@ -16,11 +16,11 @@ const navItems = [
   },
   {
     name: "About Us",
-    path: "/",
+    path: "/about",
   },
   {
     name: "Contact Us",
-    path: "/",
+    path: "/contact",
   },
 ];
 
@@ -50,7 +50,7 @@ function Header() {
   };
 
   return (
-    <Container className="bg-zinc-900 fixed top-0 left-0 z-50">
+    <Container className="bg-zinc-900">
       <div className="flex items-center justify-between">
         <div>
           <Link to={"/"}>

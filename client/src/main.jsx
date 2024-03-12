@@ -5,7 +5,7 @@ import "./index.css";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import store from "./redux/store.js";
-import { Home } from "./pages";
+import { About, Home } from "./pages";
 import {
   Route,
   RouterProvider,
@@ -17,6 +17,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route path="/" element={<Home />} />
+      <Route path="/about" element={<About />} />
     </Route>
   )
 );
