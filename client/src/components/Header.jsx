@@ -4,6 +4,7 @@ import { FiMenu } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
 import Container from "./Container";
 import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slices/authSlice";
 
 const navItems = [
   {
@@ -33,12 +34,14 @@ function Header() {
   const isLoggedIn = useSelector((state) => state?.auth?.isLoggedIn);
   const role = useSelector((state) => state?.auth?.role);
 
-  function handleLogOut(e) {
+  async function handleLogOut(e) {
     e.preventDefault();
 
-    // TODO: write the logic
+    const response = await dispatch(logout());
 
-    navigate("/");
+    if (response?.payload?.data?.success) {
+      navigate("/");
+    }
   }
 
   const toggleMenu = () => {
