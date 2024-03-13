@@ -13,7 +13,7 @@ import {
 } from "react-router-dom";
 
 import App from "./App.jsx";
-import { About, Home, NotFound, Signup } from "./pages";
+import { About, Home, NotFound, Signin, Signup } from "./pages";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +22,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Signin />} />
       </Route>
       <Route path="*" element={<NotFound />} />
     </>

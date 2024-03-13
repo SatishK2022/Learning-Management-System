@@ -102,7 +102,7 @@ const Signup = () => {
   }
 
   return (
-    <Container className="h-screen w-full flex items-center justify-center">
+    <Container className="h-[90vh] lg:h-screen w-full flex items-center justify-center">
       <form
         noValidate
         onSubmit={(e) => onFormSubmit(e)}

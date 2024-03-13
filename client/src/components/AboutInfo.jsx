@@ -5,7 +5,7 @@ import Container from "./Container";
 
 const AboutInfo = () => {
   return (
-    <Container className="flex flex-col lg:flex-row items-center justify-center py-10 text-white lg:gap-10 h-auto">
+    <Container className="flex flex-col lg:flex-row items-center justify-center py-10 lg:py-20 text-white lg:gap-10 h-auto">
       <div className="w-full lg:w-1/2 flex items-center justify-center">
         <img className="w-full" src={aboutInfo} alt="Home Page" />
       </div>

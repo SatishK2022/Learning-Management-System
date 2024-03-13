@@ -33,7 +33,7 @@ const courseEnrollmentProcess = [
 
 const CourseInitation = () => {
   return (
-    <Container className="flex flex-col lg:flex-row items-center py-20 justify-center bg-slate-900 text-white gap-10 h-auto">
+    <Container className="flex flex-col lg:flex-row items-center py-10 lg:py-24 justify-center bg-slate-900 text-white gap-10 h-auto">
       <div className="w-full lg:w-1/2">
         <h1 className="text-4xl lg:text-5xl font-semibold py-5">
           Course <span className="font-bold text-orange-500">Initiation</span>{" "}
