@@ -29,22 +29,7 @@ const Signup = () => {
       !signupDetails.avatar
     ) {
       toast.error("Please fill all the fields");
-      console.log("Inside onFormSubmit");
       return;
-    }
-
-    if (signupDetails.fullName.length < 5) {
-      toast.error("Name must be at least 5 characters long");
-    }
-
-    if (!isEmail(signupDetails.email)) {
-      toast.error("Please enter a valid email");
-    }
-
-    if (!isPassword(signupDetails.password)) {
-      toast.error(
-        "Please enter a valid password, Password should have 8 to 16 char, one lowecase, uppercase and special char."
-      );
     }
 
     const formData = new FormData();
@@ -54,20 +39,11 @@ const Signup = () => {
     formData.append("avatar", signupDetails.avatar);
 
     const response = await dispatch(createAccount(formData));
-    console.log(response);
+    // console.log(response);
 
     if (response?.payload?.data?.success) {
       navigate("/login");
     }
-
-    setSignupDetails({
-      fullName: "",
-      email: "",
-      password: "",
-      avatar: "",
-    });
-
-    setPreviewImage("");
   }
 
   function handleUserInput(e) {
@@ -102,7 +78,7 @@ const Signup = () => {
   }
 
   return (
-    <Container className="h-[90vh] lg:h-screen w-full flex items-center justify-center">
+    <Container className="h-screen w-full flex items-center justify-center">
       <form
         noValidate
         onSubmit={(e) => onFormSubmit(e)}

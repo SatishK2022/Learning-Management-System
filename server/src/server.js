@@ -33,7 +33,6 @@ app.use(cors({
 }))
 app.use(cookieParser())
 app.use(morgan("dev"))
-app.use(errorMiddleware);
 
 
 // Routes Import
@@ -47,10 +46,7 @@ app.use('/api/v1/courses', courseRouter);
 app.use('/api/v1/payments', paymentRouter);
 
 
-
-app.use('/ping', (req, res) => {
-    res.send('pong')
-})
+app.use(errorMiddleware);
 
 app.all('*', (req, res) => {
     res.status(404).send('OOPS!! 404 Page not found')

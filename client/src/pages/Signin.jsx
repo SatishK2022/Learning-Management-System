@@ -28,16 +28,11 @@ const Signin = () => {
     }
 
     const response = await dispatch(login(signinDetails));
-    console.log(response);
+    // console.log(response);
 
     if (response?.payload?.data?.success) {
       navigate("/");
     }
-
-    setSigninDetails({
-      email: "",
-      password: "",
-    });
   }
 
   function handleUserInput(e) {
