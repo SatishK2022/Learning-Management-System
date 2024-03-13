@@ -49,6 +49,10 @@ function Header() {
     setIsMenuOpen(false);
   };
 
+  const isActiveNavItem = (path) => {
+    return location.pathname === path;
+  };
+
   return (
     <Container className="bg-zinc-900">
       <div className="flex items-center justify-between">
@@ -63,7 +67,9 @@ function Header() {
                 <>
                   <li
                     key={item.name}
-                    className="font-semibold hover:text-orange-500 transition-all duration-200 ease-in-out"
+                    className={`font-semibold transition-all duration-200 ease-in-out hover:text-orange-500 ${
+                      isActiveNavItem(item.path) ? "text-orange-500" : ""
+                    }`}
                   >
                     <Link to={item.path}>{item.name}</Link>
                   </li>
@@ -92,7 +98,7 @@ function Header() {
           </div>
         ) : (
           <div className="hidden lg:flex gap-4">
-            <Link to={"/register"}>
+            <Link to={"/signup"}>
               <button className="btn text-base btn-outline font-semibold px-8 rounded-full">
                 Sign Up
               </button>
@@ -129,7 +135,6 @@ function Header() {
                       onClick={toggleMenu}
                       className="inline-flex items-center justify-center rounded-md p-2 text-gray-600 hover:text-gray-400 transition-all duration-300 ease-in-out"
                     >
-                      <span className="sr-only">Close menu</span>
                       <AiOutlineClose size={30} className="h-6 w-6" />
                     </button>
                   </div>
@@ -160,7 +165,7 @@ function Header() {
                     ))}
                     {isLoggedIn ? (
                       <div className="flex flex-wrap text-center lg:hidden w-full gap-4">
-                        <Link to={"/user/profile"}>
+                        <Link to={"/user/profile"} onClick={handleMenuClose}>
                           <button className="btn text-base text-white bg-orange-500 hover:bg-orange-600 font-semibold px-8 rounded-full">
                             Profile
                           </button>
@@ -173,12 +178,12 @@ function Header() {
                       </div>
                     ) : (
                       <div className="flex flex-wrap text-center lg:hidden w-full gap-4">
-                        <Link to={"/register"}>
+                        <Link to={"/signup"} onClick={handleMenuClose}>
                           <button className="btn text-base btn-outline font-semibold px-8 rounded-full">
                             Sign Up
                           </button>
                         </Link>
-                        <Link to={"/login"}>
+                        <Link to={"/login"} onClick={handleMenuClose}>
                           <button className="btn text-base rounded-full text-white font-semibold px-8 bg-orange-500 hover:bg-orange-600">
                             Login
                           </button>

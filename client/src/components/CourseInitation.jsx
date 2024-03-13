@@ -6,28 +6,28 @@ import { FaUserGraduate, FaLaptopCode, FaCartPlus } from "react-icons/fa";
 
 const courseEnrollmentProcess = [
   {
-    icon: <FaUserPlus size={30} />,
+    icon: <FaUserPlus size={25} />,
     title: "Create account",
     path: "/signup",
-    description: "Take your carrer to unique heithts in this competative.",
+    description: "Take your carrer to unique heights in this competative.",
   },
   {
-    icon: <FaLaptopCode size={30} />,
+    icon: <FaLaptopCode size={25} />,
     title: "Select the course",
     path: "/courses",
-    description: "Take your carrer to unique heithts in this competative.",
+    description: "Take your carrer to unique heights in this competative.",
   },
   {
-    icon: <FaCartPlus size={30} />,
+    icon: <FaCartPlus size={25} />,
     title: "Buy the Course",
     path: "/courses",
-    description: "Take your carrer to unique heithts in this competative.",
+    description: "Take your carrer to unique heights in this competative.",
   },
   {
-    icon: <FaUserGraduate size={30} />,
+    icon: <FaUserGraduate size={25} />,
     title: "Start learning",
     path: "/courses",
-    description: "Take your carrer to unique heithts in this competative.",
+    description: "Take your carrer to unique heights in this competative.",
   },
 ];
 
@@ -62,8 +62,10 @@ const CourseInitation = () => {
                 key={card.title}
                 className="bg-slate-200/10 rounded-md px-5 py-5 flex flex-col text-orange-500 hover:ring-2 ring-orange-500 items-center gap-2 justify-center"
               >
-                {card.icon}
-                <h3 className="text-lg font-semibol text-white">
+                <p className="p-4 border-2 border-gray-200/10 rounded-full">
+                  {card.icon}
+                </p>
+                <h3 className="text-lg font-semibold text-white">
                   {card.title}
                 </h3>
                 <p className="text-center text-slate-300 text-sm">
