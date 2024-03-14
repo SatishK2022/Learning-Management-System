@@ -91,6 +91,10 @@ async function login(req, res, next) {
 
         const user = await User.findOne({ email }).select("+password");
 
+        if (!user) {
+            return next(new ApiError(400, "User not found"));
+        }
+
         if (!user || !(await user.comparePassword(password))) {
             return next(new ApiError(400, "Invalid credentials"));
         }

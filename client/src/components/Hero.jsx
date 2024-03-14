@@ -16,7 +16,7 @@ const Hero = () => {
           qualified faculties at a very affrodable price.
         </p>
         <div className="py-5 flex flex-wrap gap-5">
-          <Link to="/all-courses">
+          <Link to="/courses">
             <button className="bg-orange-500 hover:bg-orange-600 transition-all duration-200 px-8 py-3 text-base lg:text-lg rounded-full text-white font-semibold">
               Explore Courses
             </button>

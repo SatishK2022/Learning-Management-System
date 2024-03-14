@@ -13,7 +13,16 @@ import {
 } from "react-router-dom";
 
 import App from "./App.jsx";
-import { About, Contact, Home, NotFound, Signin, Signup } from "./pages";
+import {
+  About,
+  Contact,
+  CourseList,
+  Denied,
+  Home,
+  NotFound,
+  Signin,
+  Signup,
+} from "./pages";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -21,11 +30,13 @@ const router = createBrowserRouter(
       <Route path="/" element={<App />}>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/courses" element={<CourseList />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Signin />} />
       </Route>
       <Route path="*" element={<NotFound />} />
+      <Route path="/denied" element={<Denied />} />
     </>
   )
 );

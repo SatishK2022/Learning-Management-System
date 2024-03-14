@@ -6,6 +6,7 @@ import AboutInfo from "./AboutInfo.jsx";
 import ExploreCourses from "./ExploreCourses.jsx";
 import CourseInitation from "./CourseInitation.jsx";
 import Faq from "./Faq.jsx";
+import CourseCard from "./CourseCard.jsx";
 
 export {
     Footer,
@@ -15,5 +16,6 @@ export {
     AboutInfo,
     ExploreCourses,
     CourseInitation,
-    Faq
+    Faq,
+    CourseCard
 }

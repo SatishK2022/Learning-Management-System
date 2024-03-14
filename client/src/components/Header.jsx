@@ -13,7 +13,7 @@ const navItems = [
   },
   {
     name: "All Courses",
-    path: "/all-courses",
+    path: "/courses",
   },
   {
     name: "About Us",
@@ -57,7 +57,7 @@ function Header() {
   };
 
   return (
-    <Container className="bg-zinc-900">
+    <Container className="bg-zinc-900 z-50">
       <div className="flex items-center justify-between">
         <div>
           <Link to={"/"}>
@@ -84,35 +84,35 @@ function Header() {
               <Link to="/admin/dashboard">Admin</Link>
             </li>
           )}
+          {isLoggedIn ? (
+            <div className="hidden lg:flex gap-4">
+              <Link to={"/user/profile"}>
+                <button className="btn text-base text-white bg-orange-500 hover:bg-orange-600 font-semibold px-8 rounded-full">
+                  Profile
+                </button>
+              </Link>
+              <Link onClick={handleLogOut}>
+                <button className="btn btn-error text-base text-white rounded-full font-semibold px-8">
+                  Logout
+                </button>
+              </Link>
+            </div>
+          ) : (
+            <div className="hidden lg:flex gap-4">
+              <Link to={"/signup"}>
+                <button className="btn text-base btn-outline font-semibold px-8 rounded-full">
+                  Sign Up
+                </button>
+              </Link>
+              <Link to={"/login"}>
+                <button className="btn text-base rounded-full text-white font-semibold px-8 bg-orange-500 hover:bg-orange-600">
+                  Login
+                </button>
+              </Link>
+            </div>
+          )}
         </ul>
 
-        {isLoggedIn ? (
-          <div className="hidden lg:flex gap-4">
-            <Link to={"/user/profile"}>
-              <button className="btn text-base text-white bg-orange-500 hover:bg-orange-600 font-semibold px-8 rounded-full">
-                Profile
-              </button>
-            </Link>
-            <Link onClick={handleLogOut}>
-              <button className="btn btn-error text-base text-white rounded-full font-semibold px-8">
-                Logout
-              </button>
-            </Link>
-          </div>
-        ) : (
-          <div className="hidden lg:flex gap-4">
-            <Link to={"/signup"}>
-              <button className="btn text-base btn-outline font-semibold px-8 rounded-full">
-                Sign Up
-              </button>
-            </Link>
-            <Link to={"/login"}>
-              <button className="btn text-base rounded-full text-white font-semibold px-8 bg-orange-500 hover:bg-orange-600">
-                Login
-              </button>
-            </Link>
-          </div>
-        )}
         <div className="lg:hidden">
           <FiMenu
             onClick={toggleMenu}
