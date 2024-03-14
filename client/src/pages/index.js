@@ -6,6 +6,7 @@ import Signin from "./Signin.jsx"
 import Contact from "./Contact.jsx"
 import Denied from "./Denied.jsx"
 import CourseList from "./Course/CourseList.jsx"
+import CourseDescription from "./Course/CourseDescription.jsx"
 
 export {
     Home,
@@ -15,5 +16,6 @@ export {
     Signin,
     Contact,
     Denied,
-    CourseList
+    CourseList,
+    CourseDescription
 }

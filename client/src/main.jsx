@@ -16,6 +16,7 @@ import App from "./App.jsx";
 import {
   About,
   Contact,
+  CourseDescription,
   CourseList,
   Denied,
   Home,
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/courses" element={<CourseList />} />
+        <Route path="/course/description" element={<CourseDescription />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Signin />} />
