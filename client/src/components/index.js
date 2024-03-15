@@ -7,6 +7,7 @@ import ExploreCourses from "./ExploreCourses.jsx";
 import CourseInitation from "./CourseInitation.jsx";
 import Faq from "./Faq.jsx";
 import CourseCard from "./CourseCard.jsx";
+import RequireAuth from "./Auth/RequireAuth.jsx";
 
 export {
     Footer,
@@ -17,5 +18,6 @@ export {
     ExploreCourses,
     CourseInitation,
     Faq,
-    CourseCard
+    CourseCard,
+    RequireAuth
 }

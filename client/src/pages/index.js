@@ -7,6 +7,8 @@ import Contact from "./Contact.jsx"
 import Denied from "./Denied.jsx"
 import CourseList from "./Course/CourseList.jsx"
 import CourseDescription from "./Course/CourseDescription.jsx"
+import CreateCourse from "./Course/CreateCourse.jsx"
+import Profile from "./User/Profile.jsx"
 
 export {
     Home,
@@ -17,5 +19,7 @@ export {
     Contact,
     Denied,
     CourseList,
-    CourseDescription
+    CourseDescription,
+    CreateCourse,
+    Profile
 }

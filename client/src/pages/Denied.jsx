@@ -15,9 +15,9 @@ const Denied = () => {
         You do not have permission to access this page. <br />
         Please contact your site administrator to request access.
       </p>
-      <Link to={navigate(-1)} className="py-5">
+      <Link to={navigate("/")} className="py-5">
         <button className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 transition-all duration-200 px-5 py-3 text-sm lg:text-base uppercase rounded-full text-white font-semibold">
-          <FaArrowLeft /> go back
+          <FaArrowLeft /> go to homepage
         </button>
       </Link>
     </div>
