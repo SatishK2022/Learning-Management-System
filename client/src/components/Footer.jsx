@@ -47,15 +47,16 @@ const socialIcons = [
 
 function Footer() {
   return (
-    <Container className="w-full bg-zinc-900">
+    <Container className="w-full bg-zinc-900 select-none">
       <footer className="relative overflow-hidden">
         <div className="container relative z-10 mx-auto">
           <div className="-m-8 flex flex-wrap flex-col md:flex-row items-center justify-between">
             <div className="w-auto p-8">
-              <Link to="#">
-                <div className="inline-flex items-center">
-                  <h2 className="text-lg font-bold uppercase">Logo</h2>
-                </div>
+              <Link to={"/"}>
+                <h2 className="text-xl font-bold select-none">
+                  <span className="text-orange-500 text-2xl">C</span>
+                  oursify
+                </h2>
               </Link>
             </div>
             <div className="w-auto p-8">

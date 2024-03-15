@@ -57,11 +57,14 @@ function Header() {
   };
 
   return (
-    <Container className="bg-zinc-900 z-50">
+    <Container className="bg-zinc-900 z-50 select-none">
       <div className="flex items-center justify-between">
         <div>
           <Link to={"/"}>
-            <h2 className="text-lg font-bold uppercase">Logo</h2>
+            <h2 className="text-xl font-bold select-none">
+              <span className="text-orange-500 text-2xl">C</span>
+              oursify
+            </h2>
           </Link>
         </div>
         <ul className="hidden lg:flex items-center gap-8">
