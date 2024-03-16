@@ -9,6 +9,7 @@ import CourseList from "./Course/CourseList.jsx"
 import CourseDescription from "./Course/CourseDescription.jsx"
 import CreateCourse from "./Course/CreateCourse.jsx"
 import Profile from "./User/Profile.jsx"
+import EditProfile from "./User/EditProfile.jsx"
 
 export {
     Home,
@@ -21,5 +22,6 @@ export {
     CourseList,
     CourseDescription,
     CreateCourse,
-    Profile
+    Profile,
+    EditProfile
 }

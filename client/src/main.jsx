@@ -20,6 +20,7 @@ import {
   CourseList,
   CreateCourse,
   Denied,
+  EditProfile,
   Home,
   NotFound,
   Profile,
@@ -39,6 +40,7 @@ const router = createBrowserRouter(
 
         <Route element={<RequireAuth allowedRoles={["ADMIN", "USER"]} />}>
           <Route path="/user/profile" element={<Profile />} />
+          <Route path="/user/edit-profile" element={<EditProfile />} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
