@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Container } from "../components";
 import { BsPersonCircle } from "react-icons/bs";
 import toast from "react-hot-toast";
-import { isEmail, isPassword } from "../utils/regxMatcher.js";
 import { useDispatch } from "react-redux";
 import { createAccount } from "../redux/slices/authSlice.js";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -18,6 +18,7 @@ const Signup = () => {
     avatar: "",
   });
   const [previewImage, setPreviewImage] = useState("");
+  const [showPassword, setShowPassword] = useState(true);
 
   async function onFormSubmit(e) {
     e.preventDefault();
@@ -77,6 +78,10 @@ const Signup = () => {
     });
   }
 
+  function handleShowPassword() {
+    setShowPassword(!showPassword);
+  }
+
   return (
     <Container className="h-screen w-full flex items-center justify-center">
       <form
@@ -134,17 +139,32 @@ const Signup = () => {
           <label htmlFor="password" className="font-semibold">
             Password
           </label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={signupDetails.password}
-            onChange={handleUserInput}
-            placeholder="Enter your password"
-            className="bg-transparent border px-2 py-2 rounded-md"
-          />
+          <div className="border px-2 py-2 rounded-md flex items-center">
+            <input
+              type={showPassword ? "password" : "text"}
+              name="password"
+              id="password"
+              value={signupDetails.password}
+              onChange={handleUserInput}
+              placeholder="Enter your password"
+              className="bg-transparent w-full border-none outline-none relative"
+            />
+            {showPassword ? (
+              <FiEye
+                size={20}
+                className="cursor-pointer"
+                onClick={handleShowPassword}
+              />
+            ) : (
+              <FiEyeOff
+                size={20}
+                className="cursor-pointer"
+                onClick={handleShowPassword}
+              />
+            )}
+          </div>
         </div>
-        <button className="w-full mt-4 bg-orange-500 hover:bg-orange-600 rounded-md px-5 py-2 text-white font-bold transition-all duration-200 ease-in">
+        <button className="w-full mt-4 select-none bg-orange-500 hover:bg-orange-600 rounded-md px-5 py-2 text-white font-bold transition-all duration-200 ease-in">
           Create Account
         </button>
         <p className="text-center pt-5">
