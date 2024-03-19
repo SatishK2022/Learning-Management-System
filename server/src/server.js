@@ -39,11 +39,13 @@ app.use(morgan("dev"))
 import authRouter from './routes/user.routes.js'
 import courseRouter from './routes/course.routes.js'
 import paymentRouter from './routes/payment.routes.js'
+import miscRouter from './routes/miscellanous.routes.js'
 
 // Routes Decleration
 app.use('/api/v1/user', authRouter);
 app.use('/api/v1/courses', courseRouter);
 app.use('/api/v1/payments', paymentRouter);
+app.use('/api/v1', miscRouter)
 
 
 app.use(errorMiddleware);
