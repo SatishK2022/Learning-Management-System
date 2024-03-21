@@ -1,11 +1,22 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Container } from "../../components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { cancelCourseBundle } from "../../redux/slices/razorpaySlice";
+import { getUserData } from "../../redux/slices/authSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const userData = useSelector((state) => state.auth.data);
+
+  async function handleCancellation() {
+    toast("Initiating Cancellation");
+    await dispatch(cancelCourseBundle());
+    await dispatch(getUserData());
+    toast.success("Cancellation Successful");
+    navigate("/")
+  }
 
   return (
     <Container className="min-h-[90vh] flex items-center justify-center">
@@ -32,7 +43,7 @@ const Profile = () => {
         </div>
         <div className="flex items-center justify-center gap-2">
           <Link
-            to="/changepassword"
+            to="/change-password"
             className="w-1/2 uppercase mt-4 bg-blue-500 hover:bg-blue-600 rounded-md text-center py-2 text-white font-semibold transition-all duration-200 ease-in"
           >
             <button>Change Password</button>
@@ -45,7 +56,10 @@ const Profile = () => {
           </Link>
         </div>
         {userData?.subscription?.status === "active" && (
-          <button className="w-full btn btn-error text-base text-white rounded-md font-semibold px-8">
+          <button
+            onClick={handleCancellation}
+            className="w-full btn btn-error text-base text-white rounded-md font-semibold px-8"
+          >
             Cancel Subscription
           </button>
         )}

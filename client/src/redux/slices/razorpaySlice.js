@@ -23,6 +23,7 @@ export const getRazorpayId = createAsyncThunk("razorpay/getId", async () => {
 export const purchaseCourseBundle = createAsyncThunk("/purchasecourse", async () => {
     try {
         const response = await axiosInstance.post("/payments/subscribe")
+        console.log(response.data)
         return response.data;
     } catch (error) {
         toast.error(error?.response?.data?.message);
@@ -36,7 +37,7 @@ export const verifyUserPayment = createAsyncThunk("/payments/verify", async (dat
             razorpay_subscription_id: data.razorpay_subscription_id,
             razorpay_signature: data.razorpay_signature,
         })
-        return response.data;
+        return response;
     } catch (error) {
         toast.error(error?.response?.data?.message);
     }

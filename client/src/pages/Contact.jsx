@@ -3,8 +3,11 @@ import { Container } from "../components";
 import toast from "react-hot-toast";
 import { isEmail } from "../utils/regxMatcher";
 import axiosInstance from "../config/axiosInstance";
+import { useNavigate } from "react-router-dom";
 
 const Contact = () => {
+  const navigate = useNavigate();
+
   const [userInput, setUserInput] = useState({
     name: "",
     email: "",
@@ -35,7 +38,7 @@ const Contact = () => {
 
     try {
       const response = axiosInstance.post("/contact", userInput);
-
+      
       toast.promise(response, {
         loading: "Submitting your query",
         success: "Query submitted successfully",
@@ -43,13 +46,15 @@ const Contact = () => {
       });
 
       const responseData = await response;
-
-      if (responseData?.payload?.data) {
+      console.log(responseData)
+      if (responseData?.data?.message) {
         setUserInput({
             name: "",
             email: "",
             message: "",
         })
+
+        navigate("/")
       }
     } catch (error) {
       toast.error("Operation Failed! Please try again");

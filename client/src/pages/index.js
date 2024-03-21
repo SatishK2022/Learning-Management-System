@@ -10,6 +10,9 @@ import CourseDescription from "./Course/CourseDescription.jsx"
 import CreateCourse from "./Course/CreateCourse.jsx"
 import Profile from "./User/Profile.jsx"
 import EditProfile from "./User/EditProfile.jsx"
+import Checkout from "./Payment/Checkout.jsx"
+import CheckoutSuccess from "./Payment/CheckoutSuccess.jsx"
+import CheckoutFailure from "./Payment/CheckoutFailure.jsx"
 
 export {
     Home,
@@ -23,5 +26,8 @@ export {
     CourseDescription,
     CreateCourse,
     Profile,
-    EditProfile
+    EditProfile,
+    Checkout,
+    CheckoutSuccess,
+    CheckoutFailure
 }

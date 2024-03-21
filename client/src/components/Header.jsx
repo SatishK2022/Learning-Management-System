@@ -83,9 +83,14 @@ function Header() {
               ))
             : null}
           {isLoggedIn && role === "ADMIN" && (
-            <li className="font-semibold hover:text-orange-500 transition-all duration-200 ease-in-out">
-              <Link to="/admin/dashboard">Admin</Link>
-            </li>
+            <>
+              <li className="font-semibold hover:text-orange-500 transition-all duration-200 ease-in-out">
+                <Link to="/admin/dashboard">Admin</Link>
+              </li>
+              <li className="font-semibold hover:text-orange-500 transition-all duration-200 ease-in-out">
+                <Link to="/course/create">Create Course</Link>
+              </li>
+            </>
           )}
           {isLoggedIn ? (
             <div className="hidden lg:flex gap-4">
