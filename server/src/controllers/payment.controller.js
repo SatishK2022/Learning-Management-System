@@ -35,7 +35,7 @@ async function buySubscription(req, res, next) {
         })
 
         user.subscription.id = subscription.id;
-        user.subscription.status = subscription.status;
+        user.subscription.status = "active";
 
         await user.save();
 
