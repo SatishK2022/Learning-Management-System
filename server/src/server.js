@@ -50,6 +50,13 @@ app.use('/api/v1', miscRouter)
 
 app.use(errorMiddleware);
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: 'Welcome to Coursify API'
+    })
+})
+
 app.all('*', (req, res) => {
     res.status(404).send('OOPS!! 404 Page not found')
 })
