@@ -9,8 +9,8 @@ const CourseDescription = () => {
   const { role, data } = useSelector((state) => state.auth);
 
   return (
-    <Container className="min-h-[90vh] flex flex-col items-center justify-center">
-      <div className="grid grid-cols-2 gap-10 relative">
+    <Container className="min-h-[90vh] flex items-center justify-center">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 lg:gap-10 relative">
         {/* Left of the grid */}
         <div>
           <img

@@ -18,6 +18,9 @@ const Checkout = () => {
   const subscription_id = useSelector(
     (state) => state?.razorpay?.subscription_id
   );
+
+  console.log("razorpayKey: ", razorpayKey)
+  console.log("subscription_id: ", subscription_id)
   const isPaymentVerified = useSelector(
     (state) => state?.razorpay?.isPaymentVerified
   );
@@ -55,7 +58,7 @@ const Checkout = () => {
 
         const res = await dispatch(verifyUserPayment(paymentDetails));
 
-        res?.payload?.success
+        res?.payload?.data?.success
           ? navigate("/checkout/success")
           : navigate("/checkout/fail");
       },

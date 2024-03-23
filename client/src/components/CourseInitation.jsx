@@ -65,7 +65,7 @@ const CourseInitation = () => {
                 <p className="p-4 border-2 border-gray-200/10 rounded-full">
                   {card.icon}
                 </p>
-                <h3 className="text-lg font-semibold text-white">
+                <h3 className="text-lg font-semibold text-center text-white">
                   {card.title}
                 </h3>
                 <p className="text-center text-slate-300 text-sm">

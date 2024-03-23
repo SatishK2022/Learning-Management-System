@@ -9,7 +9,15 @@ const CheckoutSuccess = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getUserData());
+    const fetchUserData = async () => {
+      try {
+        await dispatch(getUserData());
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+  
+    fetchUserData();
   }, []);
 
   return (

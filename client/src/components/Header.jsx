@@ -136,8 +136,10 @@ function Header() {
                 <div className="flex items-center justify-between">
                   <div className="inline-flex items-center space-x-2">
                     <Link to={"/"}>
-                      {/* <img className="w-32 lg:w-40" src={logo} alt="Logo" /> */}
-                      <h2 className="text-lg font-bold uppercase">Logo</h2>
+                      <h2 className="text-xl font-bold select-none">
+                        <span className="text-orange-500 text-2xl">C</span>
+                        oursify
+                      </h2>
                     </Link>
                   </div>
                   <div className="-mr-2">
@@ -152,16 +154,6 @@ function Header() {
                 </div>
                 <div className="mt-6">
                   <nav className="flex flex-col gap-5">
-                    {isLoggedIn && role === "ADMIN" ? (
-                      <Link
-                        to="/admin/dashboard"
-                        className="-m-3 flex items-center rounded-full p-3 text-sm font-semibold hover:bg-slate-600/20"
-                      >
-                        <span className="ml-3 text-base font-medium text-gray-300">
-                          Admin
-                        </span>
-                      </Link>
-                    ) : null}
                     {navItems.map((item) => (
                       <Link
                         key={item.name}
@@ -174,6 +166,28 @@ function Header() {
                         </span>
                       </Link>
                     ))}
+                    {isLoggedIn && role === "ADMIN" ? (
+                      <>
+                        <Link
+                          to="/admin/dashboard"
+                          onClick={handleMenuClose}
+                          className="-m-3 flex items-center rounded-full p-3 text-sm font-semibold hover:bg-slate-600/20"
+                        >
+                          <span className="ml-3 text-base font-medium text-gray-300">
+                            Admin
+                          </span>
+                        </Link>
+                        <Link
+                          to="/course/create"
+                          onClick={handleMenuClose}
+                          className="-m-3 flex items-center rounded-full p-3 text-sm font-semibold hover:bg-slate-600/20"
+                        >
+                          <span className="ml-3 text-base font-medium text-gray-300">
+                            Create Course
+                          </span>
+                        </Link>
+                      </>
+                    ) : null}
                     {isLoggedIn ? (
                       <div className="flex flex-wrap text-center lg:hidden w-full gap-4">
                         <Link to={"/user/profile"} onClick={handleMenuClose}>

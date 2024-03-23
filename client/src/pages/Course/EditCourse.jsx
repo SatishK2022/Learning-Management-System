@@ -1,40 +1,22 @@
-import { toast } from "react-hot-toast";
-import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { Container } from "../../components";
+import React, { useEffect, useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { createCourse } from "../../redux/slices/courseSlice";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { Container } from "../../components";
+import { getCourseDetails, updateCourse } from "../../redux/slices/courseSlice";
 
-const CreateCourse = () => {
+function EditCourse() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const { courseId } = useParams();
 
   const [userInput, setUserInput] = useState({
     title: "",
     description: "",
     category: "",
     createdBy: "",
-    thumbnail: "",
-    previewImage: "",
   });
-
-  function handleImage(e) {
-    e.preventDefault();
-    const uploadedImage = e.target.files[0];
-
-    if (uploadedImage) {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(uploadedImage);
-      fileReader.addEventListener("load", function () {
-        setUserInput({
-          ...userInput,
-          thumbnail: uploadedImage,
-          previewImage: this.result,
-        });
-      });
-    }
-  }
 
   function handleUserInput(e) {
     e.preventDefault();
@@ -52,14 +34,13 @@ const CreateCourse = () => {
       !userInput.title ||
       !userInput.description ||
       !userInput.category ||
-      !userInput.createdBy ||
-      !userInput.thumbnail
+      !userInput.createdBy
     ) {
       toast.error("Please fill all the fields");
       return;
     }
 
-    const response = await dispatch(createCourse(userInput));
+    const response = await dispatch(updateCourse({ userInput, courseId }));
 
     if (response?.payload?.success) {
       setUserInput({
@@ -67,15 +48,33 @@ const CreateCourse = () => {
         description: "",
         category: "",
         createdBy: "",
-        thumbnail: "",
-        previewImage: "",
       });
       navigate("/courses");
+      await dispatch(getCourseDetails(courseId));
     }
   }
 
+  useEffect(() => {
+    const fetchCourseDetails = async () => {
+      try {
+        const courseData = await dispatch(getCourseDetails(courseId));
+
+        setUserInput({
+          title: courseData?.payload?.title,
+          description: courseData?.payload?.description,
+          category: courseData?.payload?.category,
+          createdBy: courseData?.payload?.createdBy,
+        });
+      } catch (error) {
+        console.error("Error fetching course details:", error);
+      }
+    };
+
+    fetchCourseDetails();
+  }, [courseId, dispatch]);
+
   return (
-    <Container className="lg:h-screen flex items-center justify-center w-full lg:w-auto">
+    <Container className="min-h-[90vh] flex items-center justify-center w-full lg:w-auto">
       <form
         onSubmit={onFormSubmit}
         className="bg-slate-900/20 w-full flex flex-col justify-center gap-5 rounded-lg p-5 lg:w-[800px] shadow-[0_0_10px_black] relative"
@@ -87,37 +86,12 @@ const CreateCourse = () => {
           <AiOutlineArrowLeft />
         </Link>
         <h1 className="text-xl lg:text-2xl font-bold text-center uppercase pb-5">
-          Create Course
+          Edit Course
         </h1>
         <main className="grid grid-cols-1 lg:grid-cols-2 lg:gap-x-10 gap-3">
           {/* Left */}
-          <div className="gap-y-6">
-            <div>
-              <label htmlFor="image_uploads" className="cursor-pointer">
-                {userInput.previewImage ? (
-                  <img
-                    src={userInput.previewImage}
-                    alt="preview"
-                    className="w-full h-40 object-cover border rounded"
-                  />
-                ) : (
-                  <div className="w-full h-40 m-auto flex items-center justify-center border rounded">
-                    <h1 className="font-bold text-lg uppercase">
-                      Upload Course Thumbnail
-                    </h1>
-                  </div>
-                )}
-              </label>
-              <input
-                className="hidden"
-                type="file"
-                name="image_uploads"
-                id="image_uploads"
-                accept=".png, .jpg, .jpeg, .svg"
-                onChange={handleImage}
-              />
-            </div>
-            <div className="flex flex-col gap-1 mt-5">
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-1">
               <label className="text-lg font-semibold" htmlFor="title">
                 Course Title
               </label>
@@ -132,10 +106,6 @@ const CreateCourse = () => {
                 className="bg-transparent border px-2 py-2 rounded-md"
               />
             </div>
-          </div>
-
-          {/* Right */}
-          <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-lg font-semibold" htmlFor="createdBy">
                 Created By
@@ -151,6 +121,10 @@ const CreateCourse = () => {
                 className="bg-transparent border px-2 py-2 rounded-md"
               />
             </div>
+          </div>
+
+          {/* Right */}
+          <div className="flex flex-col gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-lg font-semibold" htmlFor="category">
                 Category
@@ -187,11 +161,11 @@ const CreateCourse = () => {
           type="submit"
           className="w-full uppercase mt-4 bg-orange-500 hover:bg-orange-600 rounded-md px-5 py-2 text-white font-bold transition-all duration-200 ease-in"
         >
-          Create Course
+          Update Course
         </button>
       </form>
     </Container>
   );
-};
+}
 
-export default CreateCourse;
+export default EditCourse;

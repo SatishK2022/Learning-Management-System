@@ -13,6 +13,10 @@ import EditProfile from "./User/EditProfile.jsx"
 import Checkout from "./Payment/Checkout.jsx"
 import CheckoutSuccess from "./Payment/CheckoutSuccess.jsx"
 import CheckoutFailure from "./Payment/CheckoutFailure.jsx"
+import DisplayLectures from "./Dashboard/DisplayLectures.jsx"
+import AddLecture from "./Dashboard/AddLecture.jsx"
+import EditCourse from "./Course/EditCourse.jsx"
+import ChangePassword from "./User/ChangePassword.jsx"
 
 export {
     Home,
@@ -29,5 +33,9 @@ export {
     EditProfile,
     Checkout,
     CheckoutSuccess,
-    CheckoutFailure
+    CheckoutFailure,
+    DisplayLectures,
+    AddLecture,
+    EditCourse,
+    ChangePassword
 }

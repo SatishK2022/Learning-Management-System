@@ -15,6 +15,8 @@ import {
 import App from "./App.jsx";
 import {
   About,
+  AddLecture,
+  ChangePassword,
   Checkout,
   CheckoutFailure,
   CheckoutSuccess,
@@ -23,6 +25,8 @@ import {
   CourseList,
   CreateCourse,
   Denied,
+  DisplayLectures,
+  EditCourse,
   EditProfile,
   Home,
   NotFound,
@@ -44,14 +48,19 @@ const router = createBrowserRouter(
         <Route element={<RequireAuth allowedRoles={["ADMIN", "USER"]} />}>
           <Route path="/user/profile" element={<Profile />} />
           <Route path="/user/edit-profile" element={<EditProfile />} />
+          <Route path="/change-password" element={<ChangePassword />} />
 
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/checkout/success" element={<CheckoutSuccess />} />
           <Route path="/checkout/fail" element={<CheckoutFailure />} />
+
+          <Route path="/course/display-lectures" element={<DisplayLectures />} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={["ADMIN"]} />}>
           <Route path="/course/create" element={<CreateCourse />} />
+          <Route path="/course/edit/:courseId" element={<EditCourse />} />
+          <Route path="/course/add-lecture" element={<AddLecture />}/>
         </Route>
 
         <Route path="/contact" element={<Contact />} />

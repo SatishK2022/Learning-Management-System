@@ -67,7 +67,7 @@ const EditProfile = () => {
   }
 
   return (
-    <Container className="h-screen w-full flex items-center justify-center">
+    <Container className="min-h-[90vh] w-full flex items-center justify-center">
       <form
         noValidate
         onSubmit={(e) => handleFormSubmit(e)}

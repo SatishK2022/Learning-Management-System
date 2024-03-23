@@ -3,6 +3,7 @@ import { Container } from "../../components";
 import { Link, useNavigate } from "react-router-dom";
 import { cancelCourseBundle } from "../../redux/slices/razorpaySlice";
 import { getUserData } from "../../redux/slices/authSlice";
+import toast from "react-hot-toast";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -11,7 +12,7 @@ const Profile = () => {
   const userData = useSelector((state) => state.auth.data);
 
   async function handleCancellation() {
-    toast("Initiating Cancellation");
+    toast("Initiating Cancellation...");
     await dispatch(cancelCourseBundle());
     await dispatch(getUserData());
     toast.success("Cancellation Successful");
