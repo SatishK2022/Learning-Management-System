@@ -28,7 +28,7 @@ export const razorpay = new Razorpay({
 
 app.use(express.json())
 app.use(cors({
-    origin: [process.env.FRONTEND_URL],
+    origin: true,
     credentials: true
 }))
 app.use(cookieParser())
