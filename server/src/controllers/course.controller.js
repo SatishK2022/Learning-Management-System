@@ -29,7 +29,8 @@ async function getLecturesByCourseId(req, res, next) {
         return res.status(200).json({
             success: true,
             message: "Course Lectures fetched Successfully",
-            lectures: course.lectures
+            lectures: course.lectures,
+            course: course
         })
     } catch (error) {
         return next(new ApiError(500, error.message))
@@ -84,13 +85,28 @@ async function createCourse(req, res, next) {
 async function updateCourse(req, res, next) {
     try {
         const { courseId } = req.params;
+        const { title, description, category, createdBy } = req.body;
+
+        if (!title || !description || !category || !createdBy) {
+            return res.status(400).json({
+                success: false,
+                message: "All fields are required",
+            });
+        }
+
+        console.log("Update Course", title, description, category, createdBy)
 
         const course = await Course.findByIdAndUpdate(
             courseId,
             {
-                $set: req.body
+                $set: {
+                    title,
+                    description,
+                    category,
+                    createdBy,
+                }
             },
-            { runValidators: true }
+            { new: true, runValidators: true }
         )
 
         if (!course) {
@@ -100,6 +116,7 @@ async function updateCourse(req, res, next) {
         return res.status(200).json({
             success: true,
             message: "Course updated successfully",
+            course: course
         })
     } catch (error) {
         return next(new ApiError(500, error.message))
@@ -150,7 +167,9 @@ async function addLectureToCourseById(req, res, next) {
 
         if (req.file) {
             const result = await cloudinary.v2.uploader.upload(req.file.path, {
-                folder: 'lms/lectures'
+                folder: 'lms/lectures',
+                chunk_size: 50000000,
+                resource_type: 'video'
             })
 
             if (result) {
@@ -178,19 +197,47 @@ async function addLectureToCourseById(req, res, next) {
 
 async function removeLectureFromCourse(req, res, next) {
     try {
-        const { courseId, lectureId } = req.params;
+        const { courseId, lectureId } = req.query;
+
+        console.log(courseId, lectureId)
+
+        if (!courseId) {
+            return next(new ApiError(400, "Course Id is required"));
+        }
+
+        if (!lectureId) {
+            return next(new ApiError(400, "Lecture Id is required"));
+        }
 
         const course = await Course.findById(courseId);
+
+        console.log("COURSE: ", course.lectures)
 
         if (!course) {
             return next(new ApiError(404, "Course not found"));
         }
 
-        course.lectures = course.lectures.filter(lecture => lecture._id.toString() !== lectureId);
+        const courseLecture = course.lectures.findIndex(
+            (lecture) => lecture._id.toString() === lectureId
+        )
+
+        if (courseLecture == -1) {
+            return next(new ApiError(404, "Lecture not found"));
+        }
+
+        // delete the video from cloudinary
+        await cloudinary.v2.uploader.destroy(
+            course.lectures[courseLecture].lecture?.public_id,
+            {
+                resource_type: 'video'
+            }
+        )
+
+        course.lectures.splice(courseLecture, 1);
         course.numberOfLectures = course.lectures.length;
 
-        await course.save();
-        
+        await course.save()
+
         return res.status(200).json({
             success: true,
             message: "Lecture removed successfully",
