@@ -228,7 +228,7 @@ async function changePassword(req, res, next) {
         return next(new ApiError(400, "User not found"));
     }
 
-    const isPasswordValid = user.comparePassword(oldPassword);
+    const isPasswordValid = await user.comparePassword(oldPassword);
 
     if (!isPasswordValid) {
         return next(new ApiError(400, "Invalid old password"));
