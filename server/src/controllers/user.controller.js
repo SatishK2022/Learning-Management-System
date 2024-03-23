@@ -7,8 +7,8 @@ import crypto from "crypto";
 
 const cookieOptions = {
     maxAge: 24 * 60 * 60 * 1000,
-    httpOnly: true,
-    secure: true,
+    httpOnly: false,
+    secure: false,
 }
 
 async function register(req, res, next) {
